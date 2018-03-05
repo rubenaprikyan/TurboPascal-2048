@@ -35,7 +35,7 @@ Procedure menu(var k1:byte;lang:boolean);
            outtextxy(320-textwidth(s) div 2,162-textheight(s) div 2,s);
        s:='Գրանցվել';
            outtextxy(320-textwidth(s) div 2,214-textheight(s) div 2,s);
-       s:='Օքնություն';
+       s:='Օգնություն';
            outtextxy(320-textwidth(s) div 2,266-textheight(s) div 2,s);
        s:='Ելք'; 
            outtextxy(320-textwidth(s) div 2,318-textheight(s) div 2,s);
