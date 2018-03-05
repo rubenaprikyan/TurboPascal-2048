@@ -5,6 +5,9 @@
 uses crt,graph;
 var i,j,n,l:byte; a,b:integer; x:array[1..4,1..4] of integer; c,cn:char;
 s:string; t,tp,th:boolean;
+procedure Game;
+var i,j,n,l:byte; a,b:integer; x:array[1..4,1..4] of integer; c,cn:char;
+      s:string; t,tp,th:boolean;
 procedure nerkum(x0,a0,b0:integer);
 
   procedure miaguyn(l1,a1,b1:integer);
@@ -27,35 +30,34 @@ procedure nerkum(x0,a0,b0:integer);
    end;
 BEGIN
  case x0 of
- 2: miaguyn(15,a0,b0);
- 4: anhavasar(15,14,a0,b0);
- 8: havasar(15,14,a0,b0);
- 16:anhavasar(14,15,a0,b0);
- 32:miaguyn(14,a0,b0);
- 64:anhavasar(14,6,a0,b0);
- 128: havasar(6,14,a0,b0);
- 256: anhavasar(6,14,a0,b0);
- 512: miaguyn(6,a0,b0);
- 1024:anhavasar(6,4,a0,b0);
- 2048:havasar(4,6,a0,b0);
- 4096:anhavasar(4,6,a0,b0);
- 8192:miaguyn(4,a0,b0);
- end
-END;
-begin  randomize; l:=0;
+ 2: monochrome(15,a0,b0);
+ 4: unequal(15,14,a0,b0);
+ 8: equal(15,14,a0,b0);
+ 16:unequal(14,15,a0,b0);
+ 32:monochrome(14,a0,b0);
+ 64:unequal(14,6,a0,b0);
+ 128: equal(6,14,a0,b0);
+ 256: unequal(6,14,a0,b0);
+ 512: monochrome(6,a0,b0);
+ 1024:unequal(6,4,a0,b0);
+ 2048:equal(4,6,a0,b0);
+ 4096:unequal(4,6,a0,b0);
+ 8192:monochrome(4,a0,b0);
+ end;
+  randomize; l:=0;
 initgraph(a,b,' ');
 setfillstyle(1,15); bar(0,0,640,480);
 setfillstyle(1,8); bar(125,65,515,415);
 setfillstyle(1,7);
-for i:=1 to 4 do
-for j:=1 to 4 do
+for p:=1 to 4 do
+for k:=1 to 4 do
  begin
- a:=86*(i-1)+71;
- b:=131+96*(j-1);
+ a:=86*(p-1)+71;
+ b:=131+96*(k-1);
  bar(b,a,b+90,a+80);
  end;
-for i:=1 to 4 do
-for j:=1 to 4 do x[i,j]:=0;
+for p:=1 to 4 do
+for k:=1 to 4 do x[p,k]:=0;
 {x[3,1]:=2; x[4,1]:=2;} settextstyle(0,0,2);setcolor(0);
 REPEAT
 
@@ -78,8 +80,8 @@ t:=false;
   a:=86*(i-1)+71;
   b:=131+96*(j-1);
   nerkum(x[i,j],a,b);
-  a:=105+(i-1)*86;
-  b:=135+(j-1)*96;
+  a:=104+(i-1)*86;
+  b:=104+(j-1)*96;
   str(x[i,j],s);
   outtextxy(b,a,s)
  end else
@@ -90,23 +92,23 @@ t:=false;
   bar(b,a,b+90,a+80);
  end;
 
-for i:=1 to 4 do
-for j:=1 to 4 do
-if x[i,j]=8162 then begin th:=true; break end;
-tp:=false;
-for i:=1 to 4 do
-for j:=1 to 4 do
-if x[i,j]=0 then begin tp:=false; break end;
-if tp=true then
- for i:=2 to 3 do
- for j:=2 to 3 do
-  begin
-   if l>1 then begin tp:=false; break end;
-   l:=0;
-   for a:=i-1 to i+1 do
-   for b:=j-1 to j+1 do
-    if x[a,b]=x[i,j] then l:=l+1;
-  end;
+For i:=1 to 4 do
+    For j:=1 to 4 do
+    if x[i,j]=64 then begin th:=true; break end;
+    tp:=false;
+          For i:=1 to 4 do
+          For j:=1 to 4 do
+          if x[i,j]=0 then begin tp:=false; break end;
+          if tp=true then
+           For i:=2 to 3 do
+           For j:=2 to 3 do
+            begin
+             if l>1 then begin tp:=false; break end;
+             l:=0;
+             for a:=i-1 to i+1 do
+             for b:=j-1 to j+1 do
+              if x[a,b]=x[i,j] then l:=l+1;
+      end;
 
 c:=readkey;if ord(c)=27 then break;
 if keypressed then while keypressed do cn:=readkey;
@@ -217,5 +219,20 @@ case ord(c) of
 end;
 UNTIL (ord(c)=27)or(th=true)or(tp=true);
 setcolor(4);
-if th=true then s:='YOU WIN' else if tp=true then s:='GAME OVER' else
-s:='Exit';
+if lang then 
+  begin
+   win:='You Win';
+   gameover:='Game Over';
+   exit:='Exit'
+  end 
+else 
+ begin 
+  win:='';
+  gameover:='';
+  exit:='';
+   
+if th=true then s:=win else if tp=true then s:=gameover else
+s:=exit;
+settextstyle(0,0,6);
+outtextxy(220,200,s)
+END;
