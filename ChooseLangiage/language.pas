@@ -1,6 +1,6 @@
 {
   @author=>'rubenaprikyan'    
-                        -------->choose language<--------
+                        -------->choose a language<--------
   @return abstractly returns the selected language
 }
 Procedure language (var lang:boolean; var k1:byte);
