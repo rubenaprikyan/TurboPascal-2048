@@ -1,4 +1,4 @@
-
+{@author=>'rubenaprikyan'}
 procedure Start;
   BEGIN
        a:=0;
