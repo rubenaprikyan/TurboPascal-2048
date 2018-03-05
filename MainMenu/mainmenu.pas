@@ -2,7 +2,7 @@
 {
     @author=>"rubenaprikyan"                                    
                                     
-                                    {----->MAIN MENU<-----}
+                                    ----->MAIN MENU<-----
   
     @param k1:byte=>the key  which we get every time by start procedure;
     @param lang:boolean,is true when language=>English , is false if language =>Armenian,
