@@ -12,7 +12,7 @@ procedure nerkum(x0,a0,b0:integer);
 
   procedure miaguyn(l1,a1,b1:integer);
     begin setfillstyle(1,l1); bar(b1,a1,b1+90,a1+80) end;
-  procedure havasar(l2,l22,a2,b2:integer);
+  procedure equal(l2,l22,a2,b2:integer);
    var i2,j2:byte;
    begin
     for i2:=0 to 80 do
